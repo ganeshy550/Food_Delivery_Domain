@@ -1,0 +1,47 @@
+version: '3.8'
+
+services:
+  config-server:
+    image: config-server:latest
+    container_name: config-server
+    ports:
+      - "8888:8888"
+    networks:
+      - microservices-network
+
+  eureka-server:
+    image: eureka-server:latest
+    container_name: eureka-server
+    ports:
+      - "8761:8761"
+    networks:
+      - microservices-network
+    environment:
+      - CONFIG_SERVER_URI=http://config-server:8888
+
+  customer-db:
+    image: mysql:8.0
+    container_name: customer-db
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: customer
+    ports:
+      - "3307:3306"
+
+
+  restaurant-db:
+    image: mysql:8.0
+    container_name: restaurant-db
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: restaurant_info
+    ports:
+      - "3308:3306"
+
+networks:
+  microservices-network:
+
+
+
+
+
