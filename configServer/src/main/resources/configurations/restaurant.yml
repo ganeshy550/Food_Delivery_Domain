@@ -1,0 +1,14 @@
+server:
+  port: 7019
+spring:
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/restaurant_info
+    username: root
+    password: pass@word1
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: create
+      show-sql: true
